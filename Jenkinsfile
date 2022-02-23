@@ -1,19 +1,22 @@
 pipeline {
   agent any
+  tools {
+     maven "MAVEN"
+     jdk "JDK"
+  }
   stages {
-     stage ('Build') {
+     stage ('Initialze') {
         steps {
             sh 'echo "hello world"'            
         }
      }
-     stage('BuildMore'){
+     stage('Build'){
          steps {
-            sh '''
-                     echo ' Multiline shell steps'
-             '''
+	    sh mvn -B -DskipTests clean package'
          }
         }
      }
+
   }
 
 
